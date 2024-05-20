@@ -1,17 +1,17 @@
-const react={
-    parameter:(x,y)=> 2*(x+y),
-    area:(x,y)=> x*y
-};
+const rect=require('./rectangle.js');
 function solveRect(l,w){
     console.log(`Solving for rectangle with dimension: ${l},${w}`);
-    if(l<=0 || w <=0){
-        console.log(`Rectangle dimensions must be greater than zero. Recieved:${l}, ${w}\n\n`);
-    
-    }else{
-        console.log(`The parameter of the rectangle is : ${react.parameter(l,w)}`);
-        console.log(`Area of the rectangle is : ${react.area(l,w)}\n\n`);
-    }
-
+    rect(l,w,(err,rectangle)=> {
+        if (err){
+            console.log('ERROR:',err.message);
+        }
+        else{
+            console.log(`The parameter of the rectangle is : ${rectangle.parameter()}`);
+            console.log(`Area of the rectangle is : ${rectangle.area()}\n\n`);
+        }
+        }
+    );
+    console.log('This statement is logged after the call to rect()');
 }
 solveRect(1,2);
 solveRect(-1,2);
